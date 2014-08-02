@@ -104,8 +104,8 @@ describe('ad', function(){
 
       adModule.post(ad, function(err, data){
         adModule.remove(data.id, function(err, data){
-          adModule.get(data.id, function(err, data){
-            expect(err).to.not.exist;
+          adModule.get(data._id, function(err, data){
+            expect(err).to.exist;
             done();
           });
         });
