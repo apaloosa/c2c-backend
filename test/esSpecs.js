@@ -1,5 +1,5 @@
 var expect = require("chai").expect;
-var esClient = require('../lib/es');
+var esClient = require('../lib/es').es;
 
 describe('esDAO', function(){
   after(function(done){

@@ -1,6 +1,8 @@
 var expect = require("chai").expect;
-var adModule = require('../lib/ad');
+var ads = require('../lib/ad').ads();
 var extend = require('../lib/util').extend;
+
+console.dir(ads);
 
 describe('ad', function(){
   describe('#verify', function(){
@@ -8,7 +10,7 @@ describe('ad', function(){
       var ad = {};
       var err = undefined;
       try{
-        adModule.verify(ad);
+        ads.verify(ad);
       }catch(ex) {
         err = ex;
       }
@@ -23,7 +25,7 @@ describe('ad', function(){
 
       var err = undefined;
       try{
-        adModule.verify(ad);
+        ads.verify(ad);
       }catch(ex) {
         err = ex;
       }
@@ -37,7 +39,7 @@ describe('ad', function(){
       };
       var err = undefined;
       try{
-        adModule.verify(ad);
+        ads.verify(ad);
       }catch(ex){
         err = ex;
       }
@@ -47,12 +49,12 @@ describe('ad', function(){
   });
 
 
-  describe('#post', function(){
+  describe('#add', function(){
     it('Should return the ad with the id', function(done){
       var ad = {
         'title' : 'The white rabbit runs!'
       };
-      adModule.post(ad, function(err, final_ad){
+      ads.add(ad, function(err, final_ad){
         expect(err).to.not.exist;
         expect(ad.title).to.equal(final_ad.title);
         expect(final_ad.id).to.exist;
@@ -66,7 +68,7 @@ describe('ad', function(){
       var ad = {
         'title' : 'The white rabbit runs!'
       };
-      adModule.post(ad, function(err, retrieved_ad){
+      ads.add(ad, function(err, retrieved_ad){
         expect(retrieved_ad).to.exist;
         expect(retrieved_ad).to.have.property('title', ad.title);
         done();
@@ -80,13 +82,13 @@ describe('ad', function(){
         'title' : 'The white rabbit runs!'
       };
 
-      adModule.post(ad, function(err, data){
+      ads.add(ad, function(err, data){
 
         var copy_ad = extend(ad);
         copy_ad.title = 'Have chaged';
         copy_ad.id = data.id;
 
-        adModule.put(copy_ad.id, copy_ad, function(err, final_ad){
+        ads.update(copy_ad.id, copy_ad, function(err, final_ad){
           expect(final_ad).to.exist;
           expect(final_ad).to.have.property('title', copy_ad.title);
           expect(final_ad).to.deep.equal(copy_ad, final_ad);
@@ -102,9 +104,9 @@ describe('ad', function(){
         'title' : 'The white rabbit runs!'
       };
 
-      adModule.post(ad, function(err, data){
-        adModule.remove(data.id, function(err, data){
-          adModule.get(data._id, function(err, data){
+      ads.add(ad, function(err, data){
+        ads.remove(data.id, function(err, data){
+          ads.get(data._id, function(err, data){
             expect(err).to.exist;
             done();
           });
