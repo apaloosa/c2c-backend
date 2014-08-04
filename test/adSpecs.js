@@ -1,10 +1,28 @@
 var expect = require("chai").expect;
-var ads = require('../lib/ad').ads();
+var adModule = require('../lib/ad');
 var extend = require('../lib/util').extend;
-
-console.dir(ads);
+var esClient = require('../lib/es').es;
 
 describe('ad', function(){
+  var es = esClient();
+  es.index = 'tmp_ad';
+  es.indexType = 'tmp_ad';
+  es.options.timeout = '2000';
+
+  var options = {
+    'es' : es
+  };
+
+  var ads = adModule.ads(options);
+
+  after(function(done){
+      es.removeIndex(function(err, data){
+        if(err)
+          throw err;
+        done();
+      });
+  });
+
   describe('#verify', function(){
     it('Should fail if has not title', function(){
       var ad = {};
