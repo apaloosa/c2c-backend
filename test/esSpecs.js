@@ -1,9 +1,9 @@
 var expect = require("chai").expect;
 var esClient = require('../lib/es').es;
+var es = require('../lib/es').es();
 
 describe('esDAO', function(){
   after(function(done){
-      var es = esClient();
       es.removeIndex(function(err, data){
         if(err)
           throw err;
@@ -15,7 +15,6 @@ describe('esDAO', function(){
   describe('#post', function(){
 
     it('should post a new ad to the storage', function(done){
-      var es = esClient();
       var ad = {
         'title' : 'Days of glory',
         'director' : 'Some director',
@@ -80,7 +79,6 @@ describe('esDAO', function(){
        'year' : '1994'
       };
 
-      var es = esClient();
       es.post(ad, function(err, data){
         //expect(err).to.be.null;
         //expect(data).to.be.not.null;
@@ -94,7 +92,6 @@ describe('esDAO', function(){
     });
 
     it('Should return an error if the document is not found', function(done){
-        var es = esClient();
         es.get('invalid_id', function(err, ret){
           expect(err).to.exist;
           expect(ret).to.be.null;
@@ -118,7 +115,6 @@ describe('esDAO', function(){
 
   describe('#delete', function(){
     it('Should fail while trying to delete an unexisting document', function(done){
-      var es = esClient();
       es.remove('invalid_id', function(err, data){
         expect(err).to.exist;
         expect(data).to.exist;
@@ -128,7 +124,6 @@ describe('esDAO', function(){
     });
 
     it('Should succeed in removing an existing document', function(done){
-      var es = esClient();
       var ad = {
         'title' : 'Days of glory',
         'director' : 'Some director',
@@ -153,7 +148,6 @@ describe('esDAO', function(){
   describe('#put', function(){
 
     it('Should update an already existing ad', function(done){
-      var es = esClient();
       var ad = {
         'title' : 'Days of glory',
         'director' : 'Some director',
@@ -182,7 +176,6 @@ describe('esDAO', function(){
         'year' : '1994'
       };
 
-      var es = esClient();
       es.put('invalid_id', ad, function(err, data){
         expect(err).to.not.exist;
         expect(data).to.exist;

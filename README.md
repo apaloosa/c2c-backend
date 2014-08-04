@@ -15,7 +15,6 @@ Expect this to be heavily updated.
 ## Checkout
 
 
-
 ### Clone the repository
 ```bash
 $ git clone https://github.com/apaloosa/c2c-backend.git && cd c2c-backend
@@ -75,11 +74,13 @@ or it's childs.  The same with a location.
 
 Locations and categories are two ways of categorizating ads by using trees.
 
-## Location / Category tree user stories
+### Location / Category tree user stories
 
 - A user *must* associate the ads to a given location and category
 - A user should be able to list the category tree of a given location
 - A user should be able to list the child locations of a given location
+
+### Location Implementation
 
 
 
