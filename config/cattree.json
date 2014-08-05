@@ -1,0 +1,62 @@
+{
+  "ar" : {
+
+    "1" : {
+      "_meta" : {
+        "description" : "phone and tablets"
+      },
+
+      "1" : {
+        "_meta" : {
+          "description" : "phones"
+        }
+      },
+
+      "2" : {
+        "_meta" : {
+          "description" : "tablets"
+        }
+      },
+
+      "3" : {
+        "_meta" : {
+          "description" : "accessories"
+        }
+      }
+    },
+
+    "2" : {
+
+      "_meta" : {
+        "description" : "for sale"
+      },
+
+      "1" : {
+        "_meta" : {
+          "description" : "books"
+        }
+      },
+
+      "2" : {
+        "_meta" : {
+          "description" : "animals"
+        }
+      }
+    }
+  },
+
+  "bsas.com.ar" : {
+
+    "3" : {
+      "_meta" : {
+        "description" : "Some category"
+      }
+    },
+
+    "4" : {
+      "_meta" : {
+        "description" : "some other category"
+      }
+    }
+  }
+}
